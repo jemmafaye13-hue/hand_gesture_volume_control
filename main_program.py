@@ -1,5 +1,6 @@
 import cv2
 import mediapipe as mp
+import pyautogui
 
 mp_hands = mp.solutions.hands
 mp_drawing = mp.solutions.drawing_utils
@@ -19,6 +20,26 @@ while True:
     if result.multi_hand_landmarks:
         for hand_landmarks in result.multi_hand_landmarks:
             mp_drawing.draw_landmarks(image, hand_landmarks, mp_hands.HAND_CONNECTIONS)
+
+            landmarks = hand_landmarks.landmark
+            for id, landmark in enumerate(landmarks):
+                x = int(landmark.x * image.shape[1])
+                y = int(landmark.y * image.shape[0])
+
+                if id == 8:
+                    cv2.circle(img=image, center=(x, y), radius=10, color=(0, 255, 255))
+                    x8, y8 = x, y
+
+                if id == 4:
+                    cv2.circle(img=image, center=(x, y), radius=10, color=(0, 255, 255))
+                    x4, y4 = x, y
+
+            dist = ((x8 - x4) ** 2 + (y8 - y4) ** 2) ** 0.5
+
+            if dist > 50:
+                pyautogui.press("volumeup")
+            else:
+                pyautogui.press("volumedown")
 
     cv2.imshow("Hand volume control", image)
     if cv2.waitKey(1) & 0xFF == ord('q'): break

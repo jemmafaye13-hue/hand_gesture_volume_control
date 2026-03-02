@@ -46,7 +46,8 @@ while True:
                 pyautogui.press("volumedown")
 
     cv2.imshow("Hand volume control", image)
-    if cv2.waitKey(1) & 0xFF == ord('q'): break
+    if cv2.waitKey(1) & 0xFF == ord('q'): 
+        break
 
 webcam.release()
 cv2.destroyAllWindows()

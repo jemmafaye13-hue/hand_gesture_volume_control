@@ -34,8 +34,8 @@ while True:
                     thumb_x, thumb_y = coord_x, coord_y
 
                 if finger_id == 4:
-                    cv2.circle(img=image, center=(x, y), radius=10, color=(0, 255, 255))
-                    x4, y4 = x, y
+                    cv2.circle(image, (coord_x, coord_y), 10, (0, 255, 255), cv2.FILLED)
+                    index_x, index_y = coord_x, coord_y
 
             finger_distance = ((index_x - thumb_x) ** 2 + (index_y - thumb_y) ** 2) ** 0.5
 

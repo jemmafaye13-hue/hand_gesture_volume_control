@@ -13,7 +13,8 @@ index_x, index_y = 0, 0
 
 while True:
     success, image = webcam.read()
-    if not success: break
+    if not success: 
+        break
 
     image = cv2.flip(image, 1)
     rgb_image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)

@@ -1,9 +1,11 @@
 import cv2
 import mediapipe as mp
 import pyautogui
+from mediapipe.tasks.python.vision import drawing_utils
 
 webcam = cv2.VideoCapture(0)
 my_hands = mp.solutions.hands.Hands()
+drawing_utils = mp.solutions.drawing_utils
 while True:
     _ , image = webcam.read()
     cv2.imshow("Hand volume control using python", image)
